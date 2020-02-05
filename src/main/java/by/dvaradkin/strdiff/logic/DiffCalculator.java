@@ -15,9 +15,11 @@ public class DiffCalculator {
         final Set<Integer> matchedOriginalIndexes = new HashSet<>();
         final Set<Integer> matchedResultingIndexes = new HashSet<>();
         final List<GuessResult> results = new ArrayList<>();
+
         for (DistanceHolder currentDistanceHolder : pairwiseDistances) {
             if (noneOfBicsAreMatchedAlready(matchedOriginalIndexes, matchedResultingIndexes, currentDistanceHolder)
                     && bicsAreCloseEnough(currentDistanceHolder)) {
+
                 results.add(createGuessResult(originalBics, resultingBics, currentDistanceHolder));
                 matchedOriginalIndexes.add(currentDistanceHolder.getOriginalBicIndex());
                 matchedResultingIndexes.add(currentDistanceHolder.getResultingBicIndex());
@@ -80,34 +82,5 @@ public class DiffCalculator {
             indexes.add(i);
         }
         return indexes;
-    }
-
-    private static class DistanceHolder implements Comparable<DistanceHolder> {
-        private final int originalBicIndex;
-        private final int resultingBicIndex;
-        private final int distance;
-
-        private DistanceHolder(int originalBicIndex, int resultingBicIndex, int distance) {
-            this.originalBicIndex = originalBicIndex;
-            this.resultingBicIndex = resultingBicIndex;
-            this.distance = distance;
-        }
-
-        public int getOriginalBicIndex() {
-            return originalBicIndex;
-        }
-
-        public int getResultingBicIndex() {
-            return resultingBicIndex;
-        }
-
-        public int getDistance() {
-            return distance;
-        }
-
-        @Override
-        public int compareTo(DistanceHolder other) {
-            return this.distance - other.distance;
-        }
     }
 }
