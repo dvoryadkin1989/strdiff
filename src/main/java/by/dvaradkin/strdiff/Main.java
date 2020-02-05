@@ -10,8 +10,8 @@ import static java.util.Arrays.asList;
 public class Main {
     public static void main(String[] args) {
 
-        final List<String> originalBics = asList("ab", "def1");
-        final List<String> resultingBics = asList("def", "abc");
+        final List<String> originalBics = asList("ab", "def1", "123");
+        final List<String> resultingBics = asList("def", "abc", "9876");
         final DiffCalculator diffCalculator = new DiffCalculator();
 
         List<GuessResult> results = diffCalculator.guessEdits(originalBics, resultingBics);
